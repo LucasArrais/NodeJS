@@ -2,6 +2,7 @@ import { hash } from 'bcryptjs'
 import { env } from '@/env/index.js'
 import type { User } from '@/@types/prisma/client.js'
 import type { UsersRepository } from '@/repositories/users-repository.js'
+import { UserAlrealdyExistsError } from '../errors/user-already-exists-error.js'
 
 interface RegisterUserUseCaseRequest {
   name: string
@@ -26,7 +27,7 @@ export class RegisterUserUseCase {
     const userWithSameEmail = await this.usersRepository.findByEmail(email)
 
     if (userWithSameEmail) {
-      throw new Error('Email already in use')
+      throw new UserAlrealdyExistsError()
     }
 
     const user = await this.usersRepository.create({
