@@ -2,6 +2,7 @@ import z from 'zod'
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import { UserAlrealdyExistsError } from '@/usecases/errors/user-already-exists-error.js'
 import { makeRegisterUseCase } from '@/usecases/factories/make-register-use-case.js'
+import { UserPresenter } from '@/http/presenters/user-presenter.js'
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
     try {
@@ -25,7 +26,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     photo,
   })
 
-  return reply.status(201).send(user)
+  return reply.status(201).send(UserPresenter.toHTTP (user))
 
 }catch(error){
     if (error instanceof UserAlrealdyExistsError){

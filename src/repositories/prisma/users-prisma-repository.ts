@@ -20,4 +20,20 @@ export class PrismaUsersRepository implements UsersRepository {
     })
   }
 
+  async list(){
+    return await prisma.user.findMany()
+  }
+
+  async delete(id: number) {
+    await prisma.user.delete({
+      where: { id },
+    })
+
+}
+  async update(id: number, data: Prisma.UserUpdateInput) {
+    return await prisma.user.update({
+      where: { id },
+      data,
+    })
+}
 }
