@@ -8,4 +8,5 @@ export default defineConfig({
     sourcemap: true,
     shims: true,
     target: 'esnext',
+    
 })
