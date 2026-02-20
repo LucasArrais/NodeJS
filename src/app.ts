@@ -1,5 +1,5 @@
 import fastify from 'fastify'
-import { appRoutes } from './http/controller/routes.js'
+import { appRoutes } from './http/controllers/routes.js'
 import { ZodError } from 'zod'
 
 
