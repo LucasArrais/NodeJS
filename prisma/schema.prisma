@@ -27,7 +27,8 @@ model User {
   email    String  @unique
   password String
   photo    String?
-  posts    Post[]
+  posts    Post[] 
+  role    USER_ROLE @default(DEFAULT)
 }
 
 model Post {

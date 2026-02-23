@@ -20,7 +20,7 @@ export async function authenticate(request: FastifyRequest, reply: FastifyReply)
             password,
         })
 
-        const token = await reply.jwtSign({ sub: user.public_id }, { expiresIn: '1d' })
+        const token = await reply.jwtSign({ sub: user.public_id, role: user.role }, { expiresIn: '1d' })
 
         return reply.status(200).send({
             ...UserPresenter.toHTTP(user),

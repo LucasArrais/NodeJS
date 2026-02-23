@@ -6,6 +6,7 @@ type HTTPUser = {
     name: string
     email: string
     photo: string | null
+    role: string
 }
 
 export class UserPresenter {
@@ -22,6 +23,7 @@ export class UserPresenter {
             name: input.name,
             email: input.email,
             photo: input.photo,
+            role: input.role,
         }
     }
 } 
